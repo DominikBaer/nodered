@@ -1,0 +1,634 @@
+[
+    {
+        "id": "effce8e2e8a9f43c",
+        "type": "tab",
+        "label": "Fronius",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "62fbd666c7c7b20d",
+        "type": "group",
+        "z": "effce8e2e8a9f43c",
+        "name": "BATTERY INSTRUCTIONS",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "7b45bdf5d2c774a4",
+            "d93cd01b0135c571",
+            "7a2e734eead34d16",
+            "d324d8010fa062da"
+        ],
+        "x": 1668,
+        "y": 193,
+        "w": 304,
+        "h": 594
+    },
+    {
+        "id": "f155037011aa0d79",
+        "type": "group",
+        "z": "effce8e2e8a9f43c",
+        "name": "Write changes!",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "0cc39af6d8b8dc0f",
+            "9f84293f8db8abd4",
+            "e0414ba507e24b27"
+        ],
+        "x": 2574,
+        "y": 419,
+        "w": 512,
+        "h": 122
+    },
+    {
+        "id": "fbe0abfb3ee0e088",
+        "type": "group",
+        "z": "effce8e2e8a9f43c",
+        "name": "Payload",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "fad803646bcd93ee"
+        ],
+        "x": 2194,
+        "y": 439,
+        "w": 292,
+        "h": 82
+    },
+    {
+        "id": "7b45bdf5d2c774a4",
+        "type": "group",
+        "z": "effce8e2e8a9f43c",
+        "g": "62fbd666c7c7b20d",
+        "name": "NORMAL",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "7a60a2b45d28626d"
+        ],
+        "x": 1694,
+        "y": 219,
+        "w": 172,
+        "h": 82
+    },
+    {
+        "id": "d93cd01b0135c571",
+        "type": "group",
+        "z": "effce8e2e8a9f43c",
+        "g": "62fbd666c7c7b20d",
+        "name": "FORCED CHARGE",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "66d147c4d9a586f8",
+            "4695b75a3e4dcf76",
+            "d040c0fa03cffab1",
+            "ad02180332549efa",
+            "62364dcb3387db2b"
+        ],
+        "x": 1694,
+        "y": 379,
+        "w": 232,
+        "h": 142
+    },
+    {
+        "id": "7a2e734eead34d16",
+        "type": "group",
+        "z": "effce8e2e8a9f43c",
+        "g": "62fbd666c7c7b20d",
+        "name": "HOLD (No charge or discharge)",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "5d370aec7b2aa1ce"
+        ],
+        "x": 1694,
+        "y": 579,
+        "w": 204,
+        "h": 82
+    },
+    {
+        "id": "d324d8010fa062da",
+        "type": "group",
+        "z": "effce8e2e8a9f43c",
+        "g": "62fbd666c7c7b20d",
+        "name": "FORCED DISCHARGE",
+        "style": {
+            "label": true
+        },
+        "nodes": [
+            "a78bef469323ace0"
+        ],
+        "x": 1694,
+        "y": 679,
+        "w": 252,
+        "h": 82
+    },
+    {
+        "id": "4695b75a3e4dcf76",
+        "type": "junction",
+        "z": "effce8e2e8a9f43c",
+        "g": "d93cd01b0135c571",
+        "x": 1720,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d040c0fa03cffab1",
+        "type": "junction",
+        "z": "effce8e2e8a9f43c",
+        "g": "d93cd01b0135c571",
+        "x": 1720,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ad02180332549efa",
+        "type": "junction",
+        "z": "effce8e2e8a9f43c",
+        "g": "d93cd01b0135c571",
+        "x": 1720,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7a60a2b45d28626d",
+        "type": "function",
+        "z": "effce8e2e8a9f43c",
+        "g": "7b45bdf5d2c774a4",
+        "name": "NORMAL",
+        "func": "\nmsg.StorCtl_Mod = \"0\"\nmsg.OutWRte = \"10000\"\nmsg.InWRte = \"10000\"\n\nmsg.newstate = \"normal\"\n\nreturn msg",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1780,
+        "y": 260,
+        "wires": [
+            [
+                "fad803646bcd93ee"
+            ]
+        ],
+        "info": "This puts the battery in normal operation.\nMeaningn that it will both charge and discharge to\nits set limits at 100%,\n"
+    },
+    {
+        "id": "66d147c4d9a586f8",
+        "type": "function",
+        "z": "effce8e2e8a9f43c",
+        "g": "d93cd01b0135c571",
+        "name": "4500W CHARGE",
+        "func": "msg.StorCtl_Mod = \"2\"\n// 4500W (65536-4500)\nmsg.OutWRte = \"61036\"\n\nmsg.newstate = \"forcecharge4500w\"\n\nreturn msg",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1810,
+        "y": 420,
+        "wires": [
+            [
+                "fad803646bcd93ee"
+            ]
+        ],
+        "info": "Example 1: Only permit energy storage charging\nThis behavior can be achieved by limiting the maximum discharge capacity to 0%\n=> results in window [-3300 W, 0 W]\n- OutWRte = 0% (set discharge limit of WchaMax to 0%)\n- StorCtl_Mod = 2 (activates discharge limit, bit pattern: 10)\n- InWRte is not relevant in this case"
+    },
+    {
+        "id": "5d370aec7b2aa1ce",
+        "type": "function",
+        "z": "effce8e2e8a9f43c",
+        "g": "7a2e734eead34d16",
+        "name": "HOLD",
+        "func": "msg.StorCtl_Mod = \"3\"\nmsg.OutWRte = \"0\"\nmsg.InWRte = \"0\"\n\nmsg.newstate = \"hold_state\"\n\nreturn msg",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1770,
+        "y": 620,
+        "wires": [
+            [
+                "fad803646bcd93ee"
+            ]
+        ],
+        "info": "Example 3: Do not permit charging or discharging\nThis behavior can be achieved by limiting the maximum charge capacity to 0%\nand the maximum discharge capacity to 0%\n=> results in window [0 W, 0 W]\n- InWRte = 0% (set charge limit of WchaMax to 0%)\n- OutWRte = 0% (set discharge limit of WchaMax to 0%)\n- StorCtl_Mod = 3 (activate both limit values, bit pattern: 11)"
+    },
+    {
+        "id": "0cc39af6d8b8dc0f",
+        "type": "modbus-response",
+        "z": "effce8e2e8a9f43c",
+        "g": "f155037011aa0d79",
+        "name": "",
+        "registerShowMax": 20,
+        "x": 2870,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "9f84293f8db8abd4",
+        "type": "modbus-flex-write",
+        "z": "effce8e2e8a9f43c",
+        "g": "f155037011aa0d79",
+        "name": "Fronius Storage",
+        "showStatusActivities": true,
+        "showErrors": true,
+        "showWarnings": true,
+        "server": "ecd41b68db8d4254",
+        "emptyMsgOnFail": true,
+        "keepMsgProperties": true,
+        "delayOnStart": false,
+        "startDelayTime": "10",
+        "x": 2680,
+        "y": 480,
+        "wires": [
+            [
+                "0cc39af6d8b8dc0f",
+                "e0414ba507e24b27"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "e0414ba507e24b27",
+        "type": "debug",
+        "z": "effce8e2e8a9f43c",
+        "g": "f155037011aa0d79",
+        "name": "Inverter MODBUS Response",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2910,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "fad803646bcd93ee",
+        "type": "function",
+        "z": "effce8e2e8a9f43c",
+        "g": "fbe0abfb3ee0e088",
+        "name": "Modbus Payload Template",
+        "func": "var values = [msg.StorCtl_Mod, (65535), (500), (10000), (65535), (65535), (5), (msg.OutWRte), (msg.InWRte)]\n\nmsg.payload = {\n    'value': values,\n    'fc': 16,\n    'unitid': 1,\n    // INT+SF = -10\n    'address': 40348,\n    'quantity': 9\n}\n\nreturn msg",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2340,
+        "y": 480,
+        "wires": [
+            [
+                "9f84293f8db8abd4"
+            ]
+        ]
+    },
+    {
+        "id": "a78bef469323ace0",
+        "type": "function",
+        "z": "effce8e2e8a9f43c",
+        "g": "d324d8010fa062da",
+        "name": "1000W DISCHARGE",
+        "func": "\nmsg.StorCtl_Mod = \"3\"\nmsg.OutWRte = 1000\n// 65536 - 1000\nmsg.InWRte = \"64536\"\n\nmsg.newstate = \"1kWdischarge\"\n\nreturn msg",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1820,
+        "y": 720,
+        "wires": [
+            [
+                "fad803646bcd93ee"
+            ]
+        ]
+    },
+    {
+        "id": "62364dcb3387db2b",
+        "type": "function",
+        "z": "effce8e2e8a9f43c",
+        "g": "d93cd01b0135c571",
+        "name": "1500W CHARGE",
+        "func": "msg.StorCtl_Mod = \"2\"\n// 4500W (65536-1500)\nmsg.OutWRte = \"64036\"\n\nmsg.newstate = \"forcecharge1500w\"\n\nreturn msg",
+        "outputs": 1,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1810,
+        "y": 480,
+        "wires": [
+            [
+                "fad803646bcd93ee"
+            ]
+        ],
+        "info": "Example 5: Charging in the range of 50% to 75% of the nominal power\nThis behavior can be achieved by limiting the maximum charge capacity to 75%\nand the maximum discharge capacity to -50%\n=> results in window [1650 W, 2475 W]\n- InWRte = 75% (set charge limit of WchaMax to 75%)\n- OutWRte = -50% (set discharge limit of WchaMax to -50%)\n- StorCtl_Mod = 3 (activate both limit values, bit pattern: 11)\n- Battery status in Fronius Solar.web will change to Forced Recharge"
+    },
+    {
+        "id": "e03b79a1cc11b497",
+        "type": "inject",
+        "z": "effce8e2e8a9f43c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 1520,
+        "y": 480,
+        "wires": [
+            [
+                "62364dcb3387db2b"
+            ]
+        ]
+    },
+    {
+        "id": "d90386a61ed57fdd",
+        "type": "inject",
+        "z": "effce8e2e8a9f43c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 1480,
+        "y": 240,
+        "wires": [
+            [
+                "7a60a2b45d28626d"
+            ]
+        ]
+    },
+    {
+        "id": "f764414c74964ed5",
+        "type": "inject",
+        "z": "effce8e2e8a9f43c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 1460,
+        "y": 600,
+        "wires": [
+            [
+                "5d370aec7b2aa1ce"
+            ]
+        ]
+    },
+    {
+        "id": "ecadc4bc1ca3a830",
+        "type": "modbus-read",
+        "z": "effce8e2e8a9f43c",
+        "name": "",
+        "topic": "",
+        "showStatusActivities": true,
+        "logIOActivities": false,
+        "showErrors": true,
+        "showWarnings": true,
+        "unitid": "200",
+        "dataType": "HoldingRegister",
+        "adr": "40070",
+        "quantity": "100",
+        "rate": "10",
+        "rateUnit": "s",
+        "delayOnStart": false,
+        "enableDeformedMessages": false,
+        "startDelayTime": "",
+        "server": "",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "x": 2310,
+        "y": 720,
+        "wires": [
+            [
+                "316722f6d27ea3c3"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "316722f6d27ea3c3",
+        "type": "debug",
+        "z": "effce8e2e8a9f43c",
+        "name": "debug 10",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2520,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "71927b12ac55b448",
+        "type": "modbus-read",
+        "z": "effce8e2e8a9f43c",
+        "name": "",
+        "topic": "",
+        "showStatusActivities": true,
+        "logIOActivities": false,
+        "showErrors": true,
+        "showWarnings": true,
+        "unitid": "200",
+        "dataType": "HoldingRegister",
+        "adr": "40315",
+        "quantity": "1",
+        "rate": "5",
+        "rateUnit": "s",
+        "delayOnStart": false,
+        "enableDeformedMessages": false,
+        "startDelayTime": "",
+        "server": "",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "x": 2290,
+        "y": 800,
+        "wires": [
+            [
+                "ec05ba08e7b92c4d"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "ec05ba08e7b92c4d",
+        "type": "debug",
+        "z": "effce8e2e8a9f43c",
+        "name": "debug 11",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 2500,
+        "y": 800,
+        "wires": []
+    },
+    {
+        "id": "f60842a699ab1c76",
+        "type": "cronplus",
+        "z": "effce8e2e8a9f43c",
+        "name": "",
+        "outputField": "payload",
+        "timeZone": "",
+        "storeName": "",
+        "commandResponseMsgOutput": "output1",
+        "defaultLocation": "",
+        "defaultLocationType": "default",
+        "outputs": 1,
+        "options": [
+            {
+                "name": "schedule1",
+                "topic": "topic1",
+                "payloadType": "default",
+                "payload": "",
+                "expressionType": "cron",
+                "expression": "0 0 20 * * * ",
+                "location": "",
+                "offset": "0",
+                "solarType": "all",
+                "solarEvents": "sunrise,sunset"
+            }
+        ],
+        "x": 1500,
+        "y": 360,
+        "wires": [
+            [
+                "66d147c4d9a586f8"
+            ]
+        ]
+    },
+    {
+        "id": "1963e5ba2342c55a",
+        "type": "cronplus",
+        "z": "effce8e2e8a9f43c",
+        "name": "",
+        "outputField": "payload",
+        "timeZone": "",
+        "storeName": "",
+        "commandResponseMsgOutput": "output1",
+        "defaultLocation": "",
+        "defaultLocationType": "default",
+        "outputs": 1,
+        "options": [
+            {
+                "name": "schedule1",
+                "topic": "topic1",
+                "payloadType": "default",
+                "payload": "",
+                "expressionType": "cron",
+                "expression": "0 0 6 * * * ",
+                "location": "",
+                "offset": "0",
+                "solarType": "all",
+                "solarEvents": "sunrise,sunset"
+            }
+        ],
+        "x": 1480,
+        "y": 180,
+        "wires": [
+            [
+                "7a60a2b45d28626d"
+            ]
+        ]
+    },
+    {
+        "id": "ecd41b68db8d4254",
+        "type": "modbus-client",
+        "name": "Fronius Gen24",
+        "clienttype": "tcp",
+        "bufferCommands": true,
+        "stateLogEnabled": true,
+        "queueLogEnabled": false,
+        "failureLogEnabled": true,
+        "tcpHost": "192.168.1.115",
+        "tcpPort": "502",
+        "tcpType": "DEFAULT",
+        "serialPort": "/dev/ttyUSB",
+        "serialType": "RTU-BUFFERD",
+        "serialBaudrate": "9600",
+        "serialDatabits": "8",
+        "serialStopbits": "1",
+        "serialParity": "none",
+        "serialConnectionDelay": "100",
+        "serialAsciiResponseStartDelimiter": "0x3A",
+        "unit_id": "200",
+        "commandDelay": 1,
+        "clientTimeout": 1000,
+        "reconnectOnTimeout": true,
+        "reconnectTimeout": 2000,
+        "parallelUnitIdsAllowed": true,
+        "showErrors": false,
+        "showWarnings": true,
+        "showLogs": true
+    }
+]
